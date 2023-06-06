@@ -1,5 +1,5 @@
 # =============================================================================
-# # ETTh1 processing
+# # ETTh1 / ETTm1 processing
 # =============================================================================
 
 import os
@@ -7,7 +7,6 @@ import pandas as pd
 import numpy as np
 import math
 import scipy.io as sio
-
 
 def sin_cos_encoding(features):
     n = features.shape[0]
@@ -55,6 +54,10 @@ if __name__=="__main__":
     con_fts = data.iloc[:,1:7].to_numpy()
     norm_con_fts = normalization(con_fts,train_size)
     new_data = np.concatenate((enc_fts,norm_con_fts), axis = 1)
+    
+    # =============================================================================
+    # # split the dataset and save as .mat file
+    # =============================================================================
     trainX = new_data[0:train_size,:]
     trainy = Y[0:train_size]
     valX = new_data[train_size:train_size+val_size,:]
